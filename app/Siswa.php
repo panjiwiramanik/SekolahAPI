@@ -14,7 +14,7 @@ class Siswa extends Model {
 
     protected $hidden =  [
         'created_at', 'updated_at'
-    ]
+    ];
 
     public static $rules_add = [
         'nis' => 'required|min:15|integer|unique:siswa,nis',
