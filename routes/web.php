@@ -12,7 +12,7 @@
 */
 
 $router->get('/', function () use ($router) {
-    return $router->app->version();
+    return "SekolahAPI dibuat oleh M. Panji Wiramanik - SMKN 4 Bandung";
 });
 
 /**
