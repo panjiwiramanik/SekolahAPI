@@ -2,12 +2,14 @@
 
 namespace App\Http\Controllers;
 
+require '../vendor/autoload.php';
+
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Validator;
+use Intervention\Image\ImageManagerStatic as Image;
 
 trait RESTActions {
-
 
     public function all()
     {
@@ -49,6 +51,15 @@ trait RESTActions {
             $data['result'] = null;
             $status = 400;
         } else {
+
+            if ($request->hasFile('foto')) {
+                $mimeimage = Image::make($request->foto)->mime();
+                $pisah = explode("/", $mimeimage);
+                $filepathimage = "public/foto/".uniqid().".".$pisah[1];
+                $image = Image::make($request->foto)->encode($mimeimage, 70)->save($filepathimage);
+                $request['foto'] = $filepathimage;
+            }
+
             $get = $m::create($request->all());
             if ($get) {
                 $data['status'] = 'success';
@@ -77,6 +88,15 @@ trait RESTActions {
             $data['result'] = null;
             $status = 400;
         } else {
+
+            if ($request->hasFile('foto')) {
+                $mimeimage = Image::make($request->foto)->mime();
+                $pisah = explode("/", $mimeimage);
+                $filepathimage = "public/foto/".uniqid().".".$pisah[1];
+                $image = Image::make($request->foto)->encode($mimeimage, 70)->save(storage_path($filepathimage));
+                $request['foto'] = $filepathimage;
+            }
+
             $get = $m::find($id);
             if ($get) {
                 if ($get->update($request->all())) {

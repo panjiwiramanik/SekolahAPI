@@ -9,11 +9,12 @@ class Siswa extends Model {
 	protected $table = 'siswa';
 
     protected $fillable = [ 
-    	'nis' ,'nama_lengkap' ,'jenis_kelamin' ,'alamat'
+    	'nis' , 'foto', 'nama_lengkap' ,'jenis_kelamin' ,'alamat'
     ];
 
     public static $rules = [
         'nis' => 'required|min:15|integer',
+        'foto' => 'required|mimes:jpg,png,jpeg|image|max:2000',
 		'nama_lengkap' => 'required|string',
 		'jenis_kelamin' => 'required',
 		'alamat' => 'required|string'
