@@ -12,7 +12,15 @@ class Siswa extends Model {
     	'nis' , 'foto', 'nama_lengkap' ,'jenis_kelamin' ,'alamat'
     ];
 
-    public static $rules = [
+    public static $rules_add = [
+        'nis' => 'required|min:15|integer|unique:siswa,nis',
+        'foto' => 'required|mimes:jpg,png,jpeg|image|max:2000',
+        'nama_lengkap' => 'required|string',
+        'jenis_kelamin' => 'required',
+        'alamat' => 'required|string'
+    ];
+
+    public static $rules_update = [
         'nis' => 'required|min:15|integer',
         'foto' => 'required|mimes:jpg,png,jpeg|image|max:2000',
 		'nama_lengkap' => 'required|string',

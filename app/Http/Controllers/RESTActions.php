@@ -43,7 +43,7 @@ trait RESTActions {
     public function add(Request $request)
     {
         $m = self::MODEL;
-        $valid = Validator::make($request->all(), $m::$rules);
+        $valid = Validator::make($request->all(), $m::$rules_add);
         if ($valid->fails()) {
             $error = $valid->errors();
             $data['status'] = 'error';
@@ -52,15 +52,17 @@ trait RESTActions {
             $status = 400;
         } else {
 
+            $filter = $request->except(['foto']);
+
             if ($request->hasFile('foto')) {
                 $mimeimage = Image::make($request->foto)->mime();
                 $pisah = explode("/", $mimeimage);
-                $filepathimage = "public/foto/".uniqid().".".$pisah[1];
+                $filepathimage = "foto/".bin2hex(random_bytes(16)).".".$pisah[1];
                 $image = Image::make($request->foto)->encode($mimeimage, 70)->save($filepathimage);
-                $request['foto'] = $filepathimage;
+                $filter['foto'] = $filepathimage;
             }
 
-            $get = $m::create($request->all());
+            $get = $m::create($filter);
             if ($get) {
                 $data['status'] = 'success';
                 $data['message'] = 'Data Berhasil Ditambahkan !';
@@ -80,7 +82,7 @@ trait RESTActions {
     public function put(Request $request, $id)
     {
         $m = self::MODEL;
-        $valid = Validator::make($request->all(), $m::$rules);
+        $valid = Validator::make($request->all(), $m::$rules_update);
         if ($valid->fails()) {
             $error = $valid->errors();
             $data['status'] = 'error';
@@ -89,17 +91,19 @@ trait RESTActions {
             $status = 400;
         } else {
 
+            $filter = $request->except(['foto']);
+
             if ($request->hasFile('foto')) {
                 $mimeimage = Image::make($request->foto)->mime();
                 $pisah = explode("/", $mimeimage);
-                $filepathimage = "public/foto/".uniqid().".".$pisah[1];
-                $image = Image::make($request->foto)->encode($mimeimage, 70)->save(storage_path($filepathimage));
-                $request['foto'] = $filepathimage;
+                $filepathimage = "foto/".bin2hex(random_bytes(16)).".".$pisah[1];
+                $image = Image::make($request->foto)->encode($mimeimage, 70)->save($filepathimage);
+                $filter['foto'] = $filepathimage;
             }
 
             $get = $m::find($id);
             if ($get) {
-                if ($get->update($request->all())) {
+                if ($get->update($filter)) {
                     $data['status'] = 'success';
                     $data['message'] = 'Data Berhasil Diubah !';
                     $data['result'] = $get;

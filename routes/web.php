@@ -21,7 +21,7 @@ $router->get('/', function () use ($router) {
 $router->get('kelas', 'KelasController@all');
 $router->get('kelas/{id}', 'KelasController@get');
 $router->post('kelas/add', 'KelasController@add');
-$router->put('kelas/{id}', 'KelasController@put');
+$router->post('kelas/{id}', 'KelasController@put');
 $router->delete('kelas/{id}', 'KelasController@remove');
 
 /**
@@ -30,5 +30,5 @@ $router->delete('kelas/{id}', 'KelasController@remove');
 $router->get('siswa', 'SiswaController@all');
 $router->get('siswa/{id}', 'SiswaController@get');
 $router->post('siswa/add', 'SiswaController@add');
-$router->put('siswa/{id}', 'SiswaController@put');
+$router->post('siswa/{id}', 'SiswaController@put');
 $router->delete('siswa/{id}', 'SiswaController@remove');
