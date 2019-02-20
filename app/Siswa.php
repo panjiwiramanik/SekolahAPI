@@ -12,6 +12,10 @@ class Siswa extends Model {
     	'nis' , 'foto', 'nama_lengkap' ,'jenis_kelamin' ,'alamat'
     ];
 
+    protected $hidden =  [
+        'created_at', 'updated_at'
+    ]
+
     public static $rules_add = [
         'nis' => 'required|min:15|integer|unique:siswa,nis',
         'foto' => 'required|mimes:jpg,png,jpeg|image|max:2000',

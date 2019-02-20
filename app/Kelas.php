@@ -12,6 +12,10 @@ class Kelas extends Model {
     	'nama_kelas', 'jurusan'
     ];
 
+     protected $hidden =  [
+        'created_at', 'updated_at'
+    ]
+
     public static $rules_add = [
         'nama_kelas' => 'required|unique:kelas,nama_kelas',
         'jurusan' => 'required|unique:kelas,jurusan'
