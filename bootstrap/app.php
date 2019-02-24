@@ -60,7 +60,7 @@ $app->singleton(
 */
 
 $app->middleware([
-    App\Http\Middleware\CORS::class
+    \Barryvdh\Cors\HandleCors::class,
 ]);
 
 // $app->routeMiddleware([
@@ -79,6 +79,7 @@ $app->middleware([
 */
 
 $app->register(Intervention\Image\ImageServiceProvider::class);
+$app->register(Barryvdh\Cors\ServiceProvider::class);
 $app->register(App\Providers\AppServiceProvider::class);
 // $app->register(App\Providers\AuthServiceProvider::class);
 // $app->register(App\Providers\EventServiceProvider::class);
