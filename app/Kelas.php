@@ -18,12 +18,12 @@ class Kelas extends Model {
 
     public static $rules_add = [
         'nama_kelas' => 'required|unique:kelas,nama_kelas',
-        'jurusan' => 'required|unique:kelas,jurusan'
+        'jurusan' => 'required'
     ];
 
     public static $rules_update = [
         'nama_kelas' => 'required',
-        'jurusan' => 'required|unique:kelas,jurusan'
+        'jurusan' => 'required'
     ];
 
 }
