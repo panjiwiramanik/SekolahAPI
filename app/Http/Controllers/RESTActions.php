@@ -51,17 +51,7 @@ trait RESTActions {
             $data['result'] = null;
             $status = 400;
         } else {
-
-            if ($request->hasFile('foto')) {
-                $filter = $request->except(['foto']);
-                $mimeimage = Image::make($request->foto)->mime();
-                $pisah = explode("/", $mimeimage);
-                $filepathimage = "foto/".bin2hex(random_bytes(16)).".".$pisah[1];
-                $image = Image::make($request->foto)->encode($mimeimage, 70)->save($filepathimage);
-                $filter['foto'] = ENV('APP_URL', 'https://sekolahpi.derazu.tech/').$filepathimage;
-            } else {
-                $filter = $request->all();
-            }
+            $filter = $request->all();
 
             $get = $m::create($filter);
             if ($get) {
@@ -91,17 +81,7 @@ trait RESTActions {
             $data['result'] = null;
             $status = 400;
         } else {
-
-            if ($request->hasFile('foto')) {
-                $filter = $request->except(['foto']);
-                $mimeimage = Image::make($request->foto)->mime();
-                $pisah = explode("/", $mimeimage);
-                $filepathimage = "foto/".bin2hex(random_bytes(16)).".".$pisah[1];
-                $image = Image::make($request->foto)->encode($mimeimage, 70)->save($filepathimage);
-                $filter['foto'] = ENV('APP_URL', 'https://sekolahpi.derazu.tech/').$filepathimage;
-            } else {
-                $filter = $request->all();
-            }
+            $filter = $request->all();
 
             $get = $m::find($id);
             if ($get) {
