@@ -8,14 +8,30 @@
 
 Laravel Lumen is a stunningly fast PHP micro-framework for building web applications with expressive, elegant syntax. We believe development must be an enjoyable, creative experience to be truly fulfilling. Lumen attempts to take the pain out of development by easing common tasks used in the majority of web projects, such as routing, database abstraction, queueing, and caching.
 
-## Official Documentation
+## Api Route
 
-Documentation for the framework can be found on the [Lumen website](https://lumen.laravel.com/docs).
+Base Url = https://sekolahapi.derazu.tech/
 
-## Security Vulnerabilities
+1. Kelas
 
-If you discover a security vulnerability within Lumen, please send an e-mail to Taylor Otwell at taylor@laravel.com. All security vulnerabilities will be promptly addressed.
+| Type | Link | Info | 
+|------|------|------|
+| get | kelas' | get all kelas data |
+| get | kelas/{id} | get detail kelas data based on id |
+| post | kelas/add | add kelas data, param: nama_kelas, jurusan |
+| post | kelas/{id} | edit kelas data based on kelas id, param: nama_kelas, jurusan |
+| delete | kelas/{id} | delete kelas data based on kelas id |
 
-## License
+2. Siswa
 
-The Lumen framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+| Type | Link | Info | 
+|------|------|------|
+| get | siswa' | get all siswa data |
+| get | siswa/{id} | get detail siswa data based on id |
+| post | siswa/add | add kelas data, param: nis, nama_lengkap, jenis_kelamin, alamat |
+| post | siswa/{id} | edit siswa data based on siswa id, param: nis, nama_lengkap, jenis_kelamin, alamat |
+| delete | siswa/{id} | delete siswa data based on siswa id |
+
+## Authors
+
+* **M. Panji Wiramanik** - (https://github.com/panjiwiramanik)
